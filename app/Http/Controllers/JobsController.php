@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\JobPosting;
+use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
 {
     public function index()
     {
-        $list = JobPosting::all();
+        $list = JobPosting::with('user')
+        ->where('user_id', Auth::id())
+        ->get();
         return view('jobs',['list'=>$list]);
     }
 
@@ -23,7 +26,10 @@ class JobsController extends Controller
             
         ]);
 
+        $userId = Auth::id();
+        
         $job = new JobPosting;
+        $job->user_id = $userId;
         $job->title = $request->title;
         $job->description = $request->description;
         $job->duration = $request->duration;

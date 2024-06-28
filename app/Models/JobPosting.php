@@ -10,4 +10,9 @@ class JobPosting extends Model
     use HasFactory;
     protected $table = 'job_posting';
     protected $fillable = ['title','description','duration'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

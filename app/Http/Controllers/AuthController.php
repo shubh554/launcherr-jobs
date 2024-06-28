@@ -48,7 +48,17 @@ class AuthController extends Controller
         if (Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-            return redirect('dashboard');
+            $user = Auth::user();
+            $roles = $user->getRoleNames();
+            if($roles[0] == 'employer')
+            {
+                return redirect('dashboard');
+            }
+            else
+            {
+                return back()->withErrors('Login Failed'); 
+            }
+            
         }
         else
         {
