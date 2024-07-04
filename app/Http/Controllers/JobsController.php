@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\JobPosting;
 use Illuminate\Support\Facades\Auth;
+use App\Models\City;
 
 class JobsController extends Controller
 {
     public function index()
     {
+        $city = City::distinct()->pluck('city');
         $list = JobPosting::with('user')
         ->where('user_id', Auth::id())
         ->get();
-        return view('jobs',['list'=>$list]);
+        
+        return view('jobs',['list'=>$list,'cities'=>$city]);
     }
 
     public function add(Request $request)
@@ -23,6 +26,7 @@ class JobsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'duration' => 'required',
+            'location' => 'required'
             
         ]);
 
@@ -33,6 +37,7 @@ class JobsController extends Controller
         $job->title = $request->title;
         $job->description = $request->description;
         $job->duration = $request->duration;
+        $job->location = $request->location;
         $job->save();
 
         return redirect()->back()->with('success', 'Operation successful.');  

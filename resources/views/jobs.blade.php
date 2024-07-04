@@ -49,7 +49,12 @@
                     placeholder="Job Title" name="title" aria-label=".form-control-lg example">
                     <textarea class="form-control form-control-lg mb-3" type="text" name="description">Job Description</textarea>
                     <input class="form-control form-control-lg mb-3"
-                    type="text" placeholder="Job Duration in hours" name="duration" aria-label=".form-control-lg example">
+                    type="number" placeholder="Job Duration in hours" name="duration" aria-label=".form-control-lg example">
+                    <select class="form-select mb-3" aria-label="Default select example" name="location">
+                      @foreach($cities as $c) 
+                      <option value="{{$c}}">{{$c}}</option>
+                      @endforeach
+                    </select>
                     <button type="submit" class="btn btn-primary">Add</button>
                 </form>
               </div>
