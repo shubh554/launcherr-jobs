@@ -76,6 +76,7 @@
               <th>Title</th>
               <th>Description</th>
               <th>Job-duration</th>
+              <th>Location</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -86,6 +87,7 @@
               <td>{{$job->title}}</td>
               <td>{{$job->description}}</td>
               <td>{{$job->duration}}</td>
+              <td>{{$job->location}}</td>
               <td>
                   @if($job->active == 1)
                   <span class="badge bg-success"  onclick="toggleActive({{$job->id}},0)">Active</span>
