@@ -31,6 +31,7 @@
               </div>
               <div class="card-body">
                 <form class="row g-3">
+                
                   <div class="col-6">
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control" value="{{$user['name']}}" disabled>
@@ -61,8 +62,12 @@
                             {{ session('success') }}
                         </div>
                 @endif
-                <form class="row g-3" method="POST" action="updateProfile">
+                <form class="row g-3" method="POST" enctype="multipart/form-data" action="updateProfile">
                 @csrf
+                <div class="col-6">
+                  <img src="{{$employerProfile->image}}" style="border-radius: 50%; width: 100px; height: 100px;"/>
+                  <input class="form-label" type="file" name="image"/>
+                </div>
                   <div class="col-12">
                     <label class="form-label">Address</label>
                     <input type="text" class="form-control" value="{{$employerProfile->address ?? null}}" name="address">
