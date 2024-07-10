@@ -65,9 +65,10 @@
                 <form class="row g-3" method="POST" enctype="multipart/form-data" action="updateProfile">
                 @csrf
                 <div class="col-6">
-                  <img src="{{$employerProfile->image}}" style="border-radius: 50%; width: 100px; height: 100px;"/>
+                  <img src="{{$employerProfile->image?$employerProfile->image:'https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg'}}" style="border-radius: 50%; width: 100px; height: 100px;"/>
                   <input class="form-label" type="file" name="image"/>
                 </div>
+                    <input type="hidden" name="cloudnary" value="{{$employerProfile->image}}">
                   <div class="col-12">
                     <label class="form-label">Address</label>
                     <input type="text" class="form-control" value="{{$employerProfile->address ?? null}}" name="address">

@@ -29,18 +29,21 @@ class ProfileController extends Controller
             'company_name' => 'sometimes|string|max:255',
             'company_website' => 'sometimes|url|max:255',
             'about' => 'sometimes|string|max:1000',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = Auth::user();
         $userId = $user->id;
 
+        if ($request->hasFile('image')){
         $cloudinary = new Cloudinary();
         
         $uploadedFileUrl = $cloudinary->uploadApi()->upload($request->file('image')->getRealPath());
 
-        $imageUrl = $uploadedFileUrl['secure_url'];
-
+        $imageUrl = $uploadedFileUrl['secure_url'];}
+        else{
+            $imageUrl = $request->cloudnary;
+        }
         EmployerProfile::updateOrCreate(
             ['user_id' => $userId], 
             [
