@@ -47,6 +47,7 @@
                   @csrf
                   <input class="form-control form-control-lg mb-3" type="text"
                     placeholder="Job Title" name="title" aria-label=".form-control-lg example">
+                    <textarea class="form-control form-control-lg mb-3" type="text" name="short_description">Short Description</textarea>
                     <textarea class="form-control form-control-lg mb-3" type="text" name="description">Job Description</textarea>
                     <input class="form-control form-control-lg mb-3"
                     type="number" placeholder="Job Duration in hours" name="duration" aria-label=".form-control-lg example">
@@ -74,7 +75,7 @@
           <thead class="table-secondary">
             <tr>
               <th>Title</th>
-              <th>Description</th>
+              <th>Short Description</th>
               <th>Job-duration</th>
               <th>Location</th>
               <th>Status</th>
@@ -85,7 +86,7 @@
            @foreach($list as $job)
             <tr>
               <td>{{$job->title}}</td>
-              <td>{{$job->description}}</td>
+              <td>{{$job->short_description}}</td>
               <td>{{$job->duration}}</td>
               <td>{{$job->location}}</td>
               <td>
@@ -100,7 +101,7 @@
                 
             
                     <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      title="Edit" onclick="edit({{$job->id}},'{{$job->title}}','{{$job->description}}',{{$job->duration}})"><i class="bi bi-pencil-fill"  data-bs-toggle="modal"
+                      title="Edit" onclick="edit({{$job->id}},'{{$job->title}}','{{$job->description}}',{{$job->duration}},'{{$job->short_description}}')"><i class="bi bi-pencil-fill"  data-bs-toggle="modal"
             data-bs-target="#edit1"></i></a>
            </div>
               </td>
@@ -130,11 +131,12 @@ $.ajax({
 });
   }
 
-  function edit(id,title,description,duration)
+  function edit(id,title,description,duration,shortDescription)
   {
     document.getElementById('jobId').value = id;
     document.getElementById('jobTitle').value = title;
     document.getElementById('jobDescription').value = description;
+    document.getElementById('jobShortDescription').value = shortDescription;
     document.getElementById('jobDuration').value = duration;
   }
 </script>
@@ -307,6 +309,8 @@ $.ajax({
             aria-label=".form-control-lg example" id="jobTitle" name="title"/>
             <textarea class="form-control form-control-lg mb-3" placeholder="Job Description"
             aria-label=".form-control-lg example" id="jobDescription" name="description"></textarea>
+            <textarea class="form-control form-control-lg mb-3" placeholder="Job Short Description"
+            aria-label=".form-control-lg example" id="jobShortDescription" name="short_description"></textarea>
           <input class="form-control form-control-lg mb-3" type="text" placeholder="Job Duration"
             aria-label=".form-control-lg example" id="jobDuration" name="duration"/>
             <button type="submit" class="btn btn-primary">Update</button>

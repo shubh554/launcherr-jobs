@@ -36,6 +36,7 @@ class JobsController extends Controller
         $job->user_id = $userId;
         $job->title = $request->title;
         $job->description = $request->description;
+        $job->short_description = $request->short_description;
         $job->duration = $request->duration;
         $job->location = $request->location;
         $job->save();
