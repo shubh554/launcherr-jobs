@@ -46,11 +46,11 @@
                 <form action="addJobs" method="POST">
                   @csrf
                   <input class="form-control form-control-lg mb-3" type="text"
-                    placeholder="Job Title" name="title" aria-label=".form-control-lg example">
-                    <textarea class="form-control form-control-lg mb-3" type="text" name="short_description">Short Description</textarea>
-                    <textarea class="form-control form-control-lg mb-3" type="text" name="description">Job Description</textarea>
+                    placeholder="Job Title" name="title" aria-label=".form-control-lg example" required>
+                    <textarea class="form-control form-control-lg mb-3" type="text" name="short_description" maxlength="250">Short Description</textarea>
+                    <textarea class="form-control form-control-lg mb-3" type="text" name="description" maxlength="500">Job Description</textarea>
                     <input class="form-control form-control-lg mb-3"
-                    type="number" placeholder="Job Duration in hours" name="duration" aria-label=".form-control-lg example">
+                    type="number" placeholder="Job Duration in hours" name="duration" aria-label=".form-control-lg example" required>
                     <select class="form-select mb-3" aria-label="Default select example" name="location">
                       @foreach($cities as $c) 
                       <option value="{{$c}}">{{$c}}</option>
@@ -305,12 +305,16 @@ $.ajax({
         <form action="editJob" method="POST">
           @csrf
           <input type="text" id="jobId" hidden name="id"/>
+          <p style="font-size: 20px">Job Title</p>
           <input class="form-control form-control-lg mb-3" type="text" placeholder="Job Title"
             aria-label=".form-control-lg example" id="jobTitle" name="title"/>
-            <textarea class="form-control form-control-lg mb-3" placeholder="Job Description"
-            aria-label=".form-control-lg example" id="jobDescription" name="description"></textarea>
+            <p style="font-size: 20px">Job Short Description</p>
             <textarea class="form-control form-control-lg mb-3" placeholder="Job Short Description"
             aria-label=".form-control-lg example" id="jobShortDescription" name="short_description"></textarea>
+            <p style="font-size: 20px">Job Description</p>
+            <textarea class="form-control form-control-lg mb-3" placeholder="Job Description"
+            aria-label=".form-control-lg example" id="jobDescription" name="description"></textarea>
+            <p style="font-size: 20px">Job Duration</p>
           <input class="form-control form-control-lg mb-3" type="text" placeholder="Job Duration"
             aria-label=".form-control-lg example" id="jobDuration" name="duration"/>
             <button type="submit" class="btn btn-primary">Update</button>

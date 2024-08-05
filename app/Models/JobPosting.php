@@ -9,7 +9,7 @@ class JobPosting extends Model
 {
     use HasFactory;
     protected $table = 'job_posting';
-    protected $fillable = ['title','description','duration'];
+    protected $fillable = ['title','description','duration','short_description','location'];
 
     public function user()
     {

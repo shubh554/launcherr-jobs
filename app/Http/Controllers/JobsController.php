@@ -25,6 +25,7 @@ class JobsController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'short_description' => 'required',
             'duration' => 'required',
             'location' => 'required'
             
@@ -48,7 +49,8 @@ class JobsController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:500',
+            'short_description' => 'required|max:250',
             'duration' => 'required',
             
         ]);
