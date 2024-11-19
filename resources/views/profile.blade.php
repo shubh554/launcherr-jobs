@@ -65,37 +65,37 @@
                 <form class="row g-3" method="POST" enctype="multipart/form-data" action="updateProfile">
                 @csrf
                 <div class="col-6">
-                  <img src="{{$employerProfile->image?$employerProfile->image:'https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg'}}" style="border-radius: 50%; width: 100px; height: 100px;"/>
+                  <img src="{{$employerProfile ? ($employerProfile->image ? $employerProfile->image : 'https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg') : 'https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg'}}" style="border-radius: 50%; width: 100px; height: 100px;"/>
                   <input class="form-label" type="file" name="image"/>
                 </div>
-                    <input type="hidden" name="cloudnary" value="{{$employerProfile->image}}">
+                    <input type="hidden" name="cloudnary" value="{{$employerProfile ? $employerProfile->image : null}}">
                   <div class="col-12">
                     <label class="form-label">Address</label>
-                    <input type="text" class="form-control" value="{{$employerProfile->address ?? null}}" name="address">
+                    <input type="text" class="form-control" value="{{$employerProfile ? $employerProfile->address : null}}" name="address">
                   </div>
                   <div class="col-6">
                     <label class="form-label">City</label>
-                    <input type="text" class="form-control" value="{{$employerProfile->city ?? null}}" name="city">
+                    <input type="text" class="form-control" value="{{$employerProfile ? $employerProfile->city : null}}" name="city">
                   </div>
                   <div class="col-6">
                     <label class="form-label">State</label>
-                    <input type="text" class="form-control" value="{{$employerProfile->state ?? null}}" name="state">
+                    <input type="text" class="form-control" value="{{$employerProfile ? $employerProfile->state : null}}" name="state">
                   </div>
                   <div class="col-6">
                     <label class="form-label">Country</label>
-                    <input type="text" class="form-control" value="{{$employerProfile->country ?? null}}" name="country">
+                    <input type="text" class="form-control" value="{{$employerProfile ? $employerProfile->country : null}}" name="country">
                   </div>
                   <div class="col-6">
                     <label class="form-label">Company Name</label>
-                    <input type="text" class="form-control" value="{{$employerProfile->company_name ?? null}}" name="company_name">
+                    <input type="text" class="form-control" value="{{$employerProfile ? $employerProfile->company_name : null}}" name="company_name">
                   </div>
                   <div class="col-6">
                     <label class="form-label">Company Website</label>
-                    <input type="text" class="form-control" value="{{$employerProfile->company_website ?? null}}" name="company_website">
+                    <input type="text" class="form-control" value="{{$employerProfile ? $employerProfile->company_website : null}}" name="company_website">
                     </div>
                   <div class="col-12">
                     <label class="form-label">About Me</label>
-                    <textarea class="form-control" rows="4" cols="4" placeholder="Describe yourself..." name="about">{{$employerProfile->about ?? null}}</textarea>
+                    <textarea class="form-control" rows="4" cols="4" placeholder="Describe yourself..." name="about">{{$employerProfile ? $employerProfile->about : null}}</textarea>
                   </div>
                   <div class="text-start">
                     <button type="submit" class="btn btn-primary px-4">Save Changes</button>
